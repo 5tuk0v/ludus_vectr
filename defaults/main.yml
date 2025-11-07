@@ -1,0 +1,15 @@
+---
+ludus_vectr_install_path: "/opt/vectr"
+ludus_vectr_hostname: "vectr.ludus.domain"
+ludus_vectr_port: 8081
+ludus_vectr_certprofile: "internal"
+ludus_vectr_container_log_level: "WARN"
+ludus_vectr_data_dir: "/var/data/"
+ludus_vectr_postgres_password: "vectrtest"
+ludus_vectr_postgres_user: "vectr"
+ludus_vectr_postgres_db: "vectr"
+ludus_vectr_redis_password: "ChangeMeRedis"
+ludus_vectr_data_key: "ChangeMeNow"
+ludus_vectr_jws_key: "ChangeMeJWSKey123456"
+ludus_vectr_jwe_key: "ChangeMeJWEKey123456"
+ludus_vectr_compose_project_name: "vectr"

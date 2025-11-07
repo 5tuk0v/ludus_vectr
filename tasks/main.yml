@@ -1,0 +1,20 @@
+---
+- name: Check if VECTR is already installed
+  ansible.builtin.stat:
+    path: "{{ ludus_vectr_install_path }}/docker-compose.yml"
+  register: vectr_installed
+
+- name: Show message if VECTR is already installed
+  ansible.builtin.debug:
+    msg: "VECTR is already installed - to run this play again remove the directory {{ ludus_vectr_install_path }}"
+  when: vectr_installed.stat.exists
+
+- name: End play if VECTR is already installed
+  ansible.builtin.meta: end_host
+  when: vectr_installed.stat.exists
+
+- name: Install VECTR
+  ansible.builtin.include_tasks: install.yml
+
+- name: Configure VECTR
+  ansible.builtin.include_tasks: configure.yml

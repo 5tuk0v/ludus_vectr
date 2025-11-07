@@ -1,0 +1,21 @@
+---
+dependencies:
+  - role: geerlingguy.docker
+    version: "7.8.0"
+
+galaxy_info:
+  role_name: ludus_vectr
+  author: 5tuk0v
+  description: Installs the VECTR adversary emulation tracking platform on Ubuntu 22.04 LTS.
+  company: ''
+  license: GPLv3
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - docker
+    - vectr
+    - adversary-emulation
+    - purple-team

@@ -1,0 +1,39 @@
+- name: Install unzip package
+  become: true
+  ansible.builtin.apt:
+    name: unzip
+    state: present
+    update_cache: true
+
+- name: Make installation directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ ludus_vectr_install_path }}"
+    state: directory
+    mode: "0755"
+
+- name: Get latest VECTR release metadata
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/SecurityRiskAdvisors/VECTR/releases/latest
+    return_content: true
+  register: vectr_release
+
+- name: Download VECTR release zip
+  ansible.builtin.get_url:
+    url: "{{ vectr_release.json.assets[0].browser_download_url }}"
+    dest: /tmp/vectr-release.zip
+    mode: "0644"
+
+- name: Extract zip contents
+  become: true
+  ansible.builtin.unarchive:
+    src: /tmp/vectr-release.zip
+    dest: "{{ ludus_vectr_install_path }}/"
+    remote_src: true
+    extra_opts:
+      - "-j"
+
+- name: Remove downloaded zip file
+  ansible.builtin.file:
+    path: /tmp/vectr-release.zip
+    state: absent

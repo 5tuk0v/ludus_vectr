@@ -1,0 +1,37 @@
+---
+- name: Configure VECTR environment file
+  become: true
+  ansible.builtin.template:
+    src: env.j2
+    dest: "{{ ludus_vectr_install_path }}/.env"
+    mode: "0600"
+    backup: true
+
+- name: Start VECTR with Docker Compose
+  become: true
+  ansible.builtin.command:
+    cmd: docker compose up -d
+    chdir: "{{ ludus_vectr_install_path }}"
+  register: vectr_compose
+  changed_when: "'Creating' in vectr_compose.stdout or 'Started' in vectr_compose.stdout or 'Creating' in vectr_compose.stderr or 'Started' in vectr_compose.stderr"
+
+- name: Wait for VECTR containers to start
+  ansible.builtin.pause:
+    seconds: 5
+
+- name: VECTR deployment status
+  ansible.builtin.debug:
+    msg:
+      - ""
+      - "════════════════════════════════════════════════════════════════"
+      - "  ✓ VECTR has been successfully deployed!"
+      - "════════════════════════════════════════════════════════════════"
+      - ""
+      - "  Access URL: https://{{ ludus_vectr_hostname }}:{{ ludus_vectr_port }}"
+      - ""
+      - "  Default Credentials:"
+      - "    Username: admin"
+      - "    Password: 11_ThisIsTheFirstPassword_11"
+      - ""
+      - "════════════════════════════════════════════════════════════════"
+      - ""
