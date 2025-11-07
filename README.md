@@ -33,13 +33,6 @@ ludus_vectr_hostname: "vectr.ludus.domain"
 # HTTPS port for VECTR access
 ludus_vectr_port: 8081
 
-# Certificate profile (usercert, internal) 
-# If you set this to `usercert` to use custom SSL certificates, you must manually add the following to `/opt/vectr/.env` after deployment:
-# VECTR_SSL_CRT=CERT-WITH-ESCAPED-NEWLINES\n-GOES-HERE
-# VECTR_SSL_KEY=PRIVATE-KEY-WITH-ESCAPED-NEWLINES\n-GOES-HERE
-# Then restart the containers with `docker compose restart` in the installation directory.
-ludus_vectr_certprofile: "internal"
-
 # Container logging level (DEBUG, INFO, WARN, ERROR, FATAL)
 ludus_vectr_container_log_level: "WARN"
 
@@ -61,7 +54,22 @@ ludus_vectr_jwe_key: "ChangeMeJWEKey123456"
 
 # Docker Compose project name
 ludus_vectr_compose_project_name: "vectr"
+
+# Certificate profile (usercert, internal)
+ludus_vectr_certprofile: "internal"
 ```
+
+### Custom SSL Certificates
+
+By default, VECTR uses self-signed certificates (`ludus_vectr_certprofile: "internal"`). To use custom SSL certificates:
+
+1. Set `ludus_vectr_certprofile: "usercert"` in your role variables
+2. After deployment, manually edit `/opt/vectr/.env` and add:
+   ```
+   VECTR_SSL_CRT=CERT-WITH-ESCAPED-NEWLINES\n-GOES-HERE
+   VECTR_SSL_KEY=PRIVATE-KEY-WITH-ESCAPED-NEWLINES\n-GOES-HERE
+   ```
+3. Restart the containers: `cd /opt/vectr && docker compose restart`
 
 ## Dependencies
 

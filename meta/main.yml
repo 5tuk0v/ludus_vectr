@@ -6,7 +6,7 @@ dependencies:
 galaxy_info:
   role_name: ludus_vectr
   author: 5tuk0v
-  description: Installs the VECTR adversary emulation tracking platform on Ubuntu 22.04 LTS.
+  description: An Ansible Role that installs VECTR, a threat tracking and campaign management tool, on Ubuntu 22.04 LTS using Docker Compose
   company: ''
   license: GPLv3
   min_ansible_version: "2.10"
@@ -15,7 +15,11 @@ galaxy_info:
       versions:
         - jammy
   galaxy_tags:
+    - ludus
     - docker
     - vectr
-    - adversary-emulation
-    - purple-team
+    - security
+    - redteam
+    - blueteam
+    - purpleteam
+    - threat
