@@ -1,7 +1,6 @@
 ---
 dependencies:
   - role: geerlingguy.docker
-    version: "7.8.0"
 
 galaxy_info:
   role_name: ludus_vectr
@@ -16,10 +15,5 @@ galaxy_info:
         - jammy
   galaxy_tags:
     - ludus
-    - docker
     - vectr
-    - security
-    - redteam
-    - blueteam
     - purpleteam
-    - threat
