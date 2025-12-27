@@ -73,7 +73,7 @@ By default, VECTR uses self-signed certificates (`ludus_vectr_certprofile: "inte
 
 ## Dependencies
 
-- `geerlingguy.docker` (version 7.8.0)
+- `geerlingguy.docker`
 
 ## Example Playbook
 
